@@ -34,7 +34,7 @@ export default function HomePage() {
         <h1 className="font-display text-3xl font-bold">{greeting}{name ? `, ${name}` : ''}</h1>
         <p className="text-sm text-muted">{prettyDate(new Intl.DateTimeFormat('en-CA').format(new Date()), { weekday: 'long', month: 'long', day: 'numeric' })}</p>
        <a 
-    href="/UNIZERO-unsigned.apk" 
+    href="/UNIVPFIT.apk" 
     download 
     className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
   >
