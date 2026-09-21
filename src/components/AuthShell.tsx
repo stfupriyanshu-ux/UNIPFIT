@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const Wordmark = ({ size = 'text-3xl' }: { size?: string }) => (
-  <span className={`font-display font-extrabold tracking-tight ${size}`}>UNIV<span className="text-sun">ZERO</span></span>
+  <span className={`font-display font-extrabold tracking-tight ${size}`}>unip<span className="text-sun">ZERO</span></span>
 );
 
 export default function AuthShell({ title, sub, children, footer }: { title: string; sub?: string; children: React.ReactNode; footer?: React.ReactNode }) {
