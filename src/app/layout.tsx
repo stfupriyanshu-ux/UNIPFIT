@@ -11,7 +11,9 @@ export const metadata: Metadata = {
   description: 'Start today. Become more tomorrow.',
   manifest: '/manifest.webmanifest',
   appleWebApp: { capable: true, title: 'UNIPZERO', statusBarStyle: 'default' },
-  icons: { icon: '/icons/icon.svg', apple: '/icons/icon-192.png' },
+  icons: { icon: '/icons/icon.svg', apple: '/icons/icon-192.png' },  verification: { google: 'QJ0c73XraV3ouHIihdcYU8rrh1lNhoZWDFq3HSfDGcQ' },
+
+  
 };
 export const viewport: Viewport = {
   width: 'device-width', initialScale: 1, viewportFit: 'cover',
