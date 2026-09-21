@@ -26,7 +26,7 @@ export async function readBody<S extends ZodTypeAny>(req: NextRequest, schema: S
 }
 
 /** Throw a friendly error for Postgres/PostgREST failures. */
-export function unwrap<T>(res: { data: T | null; error: { code?: string; message: string } | null }): T {
+export function unwrap<T>(res: { data: T | null; error: { code?: string; message: string } | null }): NonNullable<T> {
   if (res.error) {
     const c = res.error.code;
     if (c === '23505') throw new ApiError(409, 'That already exists.');
@@ -36,7 +36,7 @@ export function unwrap<T>(res: { data: T | null; error: { code?: string; message
     console.error('[db]', res.error);
     throw new ApiError(500, 'Something went wrong saving your data. Try again.');
   }
-  return res.data as T;
+  return res.data as NonNullable<T>;
 }
 export const unwrapList = <T>(res: { data: T[] | null; error: { code?: string; message: string } | null }): T[] => unwrap(res) ?? [];
 
