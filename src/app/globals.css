@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #F3F5FB; --surface: #FFFFFF; --raised: #E9EDF8; --ink: #131735; --muted: #565C7E; --line: #D9DEEE;
+  --brand: #2B3183; --brand-ink: #FFFFFF; --sun: #E59A00; --done: #0F7F69; --miss: #C0334E;
+  color-scheme: light;
+}
+.dark {
+  --bg: #0C0F22; --surface: #151935; --raised: #1D2246; --ink: #ECEEFF; --muted: #A0A6CF; --line: #2A3060;
+  --brand: #959CFF; --brand-ink: #0C0F22; --sun: #FFC53D; --done: #46D3AC; --miss: #FF7B92;
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body), system-ui, sans-serif; -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 8px; }
+.tabular { font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+.safe-top { padding-top: env(safe-area-inset-top); }
