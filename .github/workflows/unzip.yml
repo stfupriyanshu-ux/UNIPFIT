@@ -1,0 +1,17 @@
+name: unzip
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          unzip -o univzero.zip
+          rm univzero.zip
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A
+          git commit -m "Add UNIVZERO project"
+          git push
