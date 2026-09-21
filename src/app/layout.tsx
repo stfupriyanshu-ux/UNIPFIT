@@ -7,10 +7,10 @@ const display = Bricolage_Grotesque({ subsets: ['latin'], variable: '--font-disp
 const body = Figtree({ subsets: ['latin'], variable: '--font-body', display: 'swap' });
 
 export const metadata: Metadata = {
-  title: { default: 'UNIPVZERO', template: '%s · UNIVZERO' },
+  title: { default: 'UNIVPFIT', template: '%s · UNIVPFIT' },
   description: 'Start today. Become more tomorrow.',
   manifest: '/manifest.webmanifest',
-  appleWebApp: { capable: true, title: 'UNIPZERO', statusBarStyle: 'default' },
+  appleWebApp: { capable: true, title: 'UNIVPFIT', statusBarStyle: 'default' },
   icons: { icon: '/icons/icon.svg', apple: '/icons/icon-192.png' },  verification: { google: 'QJ0c73XraV3ouHIihdcYU8rrh1lNhoZWDFq3HSfDGcQ' },
 
   
