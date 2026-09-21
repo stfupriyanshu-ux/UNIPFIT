@@ -1,4 +1,4 @@
-# UNIVZERO  ·  Start today. Become more tomorrow.
+# UNIVPFIT  ·  Start today. Become more tomorrow.
 
 Free, mobile-first accountability app. Next.js + TypeScript + Tailwind + Supabase (Auth, Postgres, Storage).
 
