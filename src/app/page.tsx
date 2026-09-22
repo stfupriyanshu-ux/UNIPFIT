@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface RoutineItem {
   id: string;
@@ -16,8 +16,40 @@ export default function UNIPFitDashboard() {
     { id: '4', title: 'Evening Walk / Cardio', completed: false },
   ]);
 
-  const [notificationsEnabled, setNotificationsEnabled] = useState<boolean>(true);
+  const [notificationsEnabled, setNotificationsEnabled] = useState<boolean>(false);
   const [reminderTime, setReminderTime] = useState<string>('08:00');
+
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch((err) => console.log('SW Registration Failed:', err));
+    }
+
+    if (typeof window !== 'undefined' && 'Notification' in window) {
+      setNotificationsEnabled(Notification.permission === 'granted');
+    }
+  }, []);
+
+  const handleNotificationToggle = async () => {
+    if (!('Notification' in window)) {
+      alert('Notifications are not supported in this browser.');
+      return;
+    }
+
+    if (!notificationsEnabled) {
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        setNotificationsEnabled(true);
+        new Notification('UNIPFIT Reminders Enabled! ⚡', {
+          body: `Daily workouts reminder set for ${reminderTime}`,
+          icon: '/icons/icon-192.png',
+        });
+      } else {
+        alert('Please allow notification permissions in browser settings.');
+      }
+    } else {
+      setNotificationsEnabled(false);
+    }
+  };
 
   const completedCount = routines.filter((r) => r.completed).length;
   const percentage = Math.round((completedCount / routines.length) * 100) || 0;
@@ -50,7 +82,6 @@ export default function UNIPFitDashboard() {
 
   return (
     <div className="relative min-h-screen bg-[#0C0F22] text-white p-4 md:p-8 overflow-hidden font-sans">
-      {/* Dynamic Background Pattern */}
       <div 
         className="absolute inset-0 opacity-15 pointer-events-none"
         style={{
@@ -59,12 +90,10 @@ export default function UNIPFitDashboard() {
         }}
       />
 
-      {/* Premium Glow Orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[350px] h-[350px] bg-indigo-600/30 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[350px] h-[350px] bg-fuchsia-600/30 rounded-full blur-[120px] pointer-events-none" />
 
       <main className="relative max-w-4xl mx-auto space-y-6">
-        {/* Header */}
         <header className="flex justify-between items-center backdrop-blur-md bg-white/5 border border-white/10 p-5 rounded-2xl shadow-xl">
           <div>
             <h1 className="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-fuchsia-500">
@@ -82,7 +111,6 @@ export default function UNIPFitDashboard() {
           </div>
         </header>
 
-        {/* Activity Chart */}
         <section className="backdrop-blur-md bg-white/5 border border-white/10 p-6 rounded-2xl shadow-xl">
           <h2 className="text-lg font-bold text-gray-200 mb-4 flex items-center gap-2">
             <span>📊</span> Weekly Activity Chart
@@ -105,7 +133,6 @@ export default function UNIPFitDashboard() {
           </div>
         </section>
 
-        {/* Routine Checklist */}
         <section className="backdrop-blur-md bg-white/5 border border-white/10 p-6 rounded-2xl shadow-xl space-y-3">
           <h2 className="text-lg font-bold text-gray-200 mb-2 flex items-center gap-2">
             <span>⚡</span> Today&apos;s Routine
@@ -130,7 +157,6 @@ export default function UNIPFitDashboard() {
           </div>
         </section>
 
-        {/* Notification Settings */}
         <section className="backdrop-blur-md bg-white/5 border border-white/10 p-6 rounded-2xl shadow-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="flex items-center gap-3">
             <span className="text-2xl">🔔</span>
@@ -149,7 +175,7 @@ export default function UNIPFitDashboard() {
               className="bg-black/40 border border-white/20 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-400 disabled:opacity-40"
             />
             <button
-              onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+              onClick={handleNotificationToggle}
               className={`w-12 h-6 flex items-center rounded-full p-1 transition-colors duration-300 ${
                 notificationsEnabled ? 'bg-cyan-500' : 'bg-gray-600'
               }`}
