@@ -11,10 +11,11 @@ export const metadata: Metadata = {
   description: 'Start today. Become more tomorrow.',
   manifest: '/manifest.webmanifest',
   appleWebApp: { capable: true, title: 'UNIPFIT', statusBarStyle: 'default' },
-  icons: { icon: '/icons/icon.svg', apple: '/icons/icon-192.png' },  verification: { google: 'QJ0c73XraV3ouHIihdcYU8rrh1lNhoZWDFq3HSfDGcQ' },
-
-  
+  verification: {
+    google: 'UQ9ctw7GvdLPgjvfJDbbecPl98_Rk5fvx0k854JBTsg',
+  },
 };
+
 export const viewport: Viewport = {
   width: 'device-width', initialScale: 1, viewportFit: 'cover',
   themeColor: [{ media: '(prefers-color-scheme: light)', color: '#F3F5FB' }, { media: '(prefers-color-scheme: dark)', color: '#0C0F22' }],
