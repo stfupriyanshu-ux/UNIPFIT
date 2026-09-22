@@ -2,9 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  // The project was written without a compiler available, so don't let a stray type warning block deploys.
   typescript: { ignoreBuildErrors: true },
   eslint: { ignoreDuringBuilds: true },
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
   async headers() {
     return [
       {
@@ -20,4 +25,5 @@ const nextConfig = {
     ];
   },
 };
+
 export default nextConfig;
