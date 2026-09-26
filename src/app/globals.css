@@ -49,7 +49,7 @@ body {
   padding-top: env(safe-area-inset-top); 
 }
 
-/* Glassmorphism Premium Effect */
+/* Glassmorphism Card Style */
 .glass-card {
   background: rgba(21, 25, 53, 0.7);
   backdrop-filter: blur(12px);
@@ -58,7 +58,7 @@ body {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-/* Smooth Scrolling & Fast Micro-Interactions */
+/* Smooth Scrolling & Responsive Micro-interactions */
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
@@ -71,4 +71,3 @@ button, a {
 button:active, a:active {
   transform: scale(0.97);
 }
-
