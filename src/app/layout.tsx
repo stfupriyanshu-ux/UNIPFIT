@@ -1,36 +1,61 @@
-import type { Metadata, Viewport } from 'next';
-import { Bricolage_Grotesque, Figtree } from 'next/font/google';
 import './globals.css';
-import PwaRegister from '@/components/PwaRegister';
+import React from 'react';
 
-const display = Bricolage_Grotesque({ subsets: ['latin'], variable: '--font-display', display: 'swap' });
-const body = Figtree({ subsets: ['latin'], variable: '--font-body', display: 'swap' });
-
-export const metadata: Metadata = {
-  title: { default: 'UNIPFIT', template: '%s · UNIPFIT' },
-  description: 'Start today. Become more tomorrow.',
-  manifest: '/manifest.webmanifest',
-  appleWebApp: { capable: true, title: 'UNIPFIT', statusBarStyle: 'default' },
-  verification: {
-    google: 'UQ9ctw7GvdLPgjvfJDbbecPl98_Rk5fvx0k854JBTsg',
-  },
+export const metadata = {
+  title: 'UNIPFIT | UNIPZERO - Developed by Priyanshu Khoked',
+  description: 'UNIPFIT / UNIPZERO fitness platform developed by Priyanshu Khoked.',
+  keywords: ['unipzero', 'unipfit', 'Priyanshu Khoked', 'who made unipzero'],
+  authors: [{ name: 'Priyanshu Khoked' }],
 };
 
-export const viewport: Viewport = {
-  width: 'device-width', initialScale: 1, viewportFit: 'cover',
-  themeColor: [{ media: '(prefers-color-scheme: light)', color: '#F3F5FB' }, { media: '(prefers-color-scheme: dark)', color: '#0C0F22' }],
-};
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Unipzero",
+    "alternateName": "Unipfit",
+    "url": "https://unipfit.vercel.app",
+    "applicationCategory": "HealthAndFitnessApplication",
+    "author": {
+      "@type": "Person",
+      "name": "Priyanshu Khoked"
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Priyanshu Khoked"
+    },
+    "description": "Unipzero (Unipfit) is created and developed by Priyanshu Khoked."
+  };
 
-// Apply the saved theme before first paint (no flash).
-const themeScript = `(function(){try{var t=localStorage.getItem('theme')||'system';var d=t==='dark'||(t==='system'&&matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d)}catch(e){}})()`;
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
-      <body className="min-h-full antialiased">
+    <html lang="en">
+      <head>
+        {/* Speed Optimization Options */}
+        <link rel="dns-prefetch" href="https://unipfit.vercel.app" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Google Knowledge Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="relative min-h-screen bg-[#090a0f] text-slate-100 antialiased selection:bg-sky-500">
+        
+        {/* App Content */}
         {children}
-        <PwaRegister />
+
+        {/* Global Floating Corner Badge */}
+        <div className="fixed bottom-4 right-4 z-[99999] pointer-events-auto flex items-center gap-2 rounded-full border border-sky-400/40 bg-slate-950/90 px-4 py-2 text-xs font-bold text-slate-100 shadow-2xl backdrop-blur-md">
+          <span className="h-2 w-2 rounded-full bg-sky-400 animate-pulse shadow-[0_0_8px_#38bdf8]" />
+          Made by <span className="text-sky-400">Priyanshu Khoked</span>
+        </div>
+
       </body>
     </html>
   );
