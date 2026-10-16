@@ -1,13 +1,13 @@
 {
-  "name": "UNIPFIT | UNIPZERO",
-  "short_name": "UNIPZERO",
-  "description": "Fitness & Routine Application developed by Priyanshu Khoked",
-  "start_url": "/home",
+  "name": "UNIPFIT",
+  "short_name": "UNIPFIT",
+  "description": "Life Routine, Habit & Growth Tracker by Unipfit",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#090a0f",
-  "theme_color": "#090a0f",
+  "background_color": "#0C0F22",
+  "theme_color": "#0C0F22",
   "icons": [
     {
       "src": "/icons/icon-192.png",
