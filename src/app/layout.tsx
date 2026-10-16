@@ -1,11 +1,29 @@
-import './globals.css';
-import React from 'react';
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
-export const metadata = {
-  title: 'UNIPFIT | UNIPZERO - Developed by Priyanshu Khoked',
-  description: 'UNIPFIT / UNIPZERO fitness platform developed by Priyanshu Khoked.',
-  keywords: ['unipzero', 'unipfit', 'Priyanshu Khoked', 'who made unipzero'],
-  authors: [{ name: 'Priyanshu Khoked' }],
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+});
+
+export const metadata: Metadata = {
+  title: "UNIPFIT | Life Routine & Growth Tracker",
+  description: "Advanced life routine, habit, challenge, and growth tracking PWA by Unipfit.",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "UNIPFIT",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0C0F22",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
@@ -13,49 +31,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Unipzero",
-    "alternateName": "Unipfit",
-    "url": "https://unipfit.vercel.app",
-    "applicationCategory": "HealthAndFitnessApplication",
-    "author": {
-      "@type": "Person",
-      "name": "Priyanshu Khoked"
-    },
-    "creator": {
-      "@type": "Person",
-      "name": "Priyanshu Khoked"
-    },
-    "description": "Unipzero (Unipfit) is created and developed by Priyanshu Khoked."
-  };
-
   return (
-    <html lang="en">
-      <head>
-        {/* Speed Optimization Options */}
-        <link rel="dns-prefetch" href="https://unipfit.vercel.app" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
-        {/* Google Knowledge Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
-      <body className="relative min-h-screen bg-[#090a0f] text-slate-100 antialiased selection:bg-sky-500">
-        
-        {/* App Content */}
-        {children}
-
-        {/* Global Floating Corner Badge */}
-        <div className="fixed bottom-4 right-4 z-[99999] pointer-events-auto flex items-center gap-2 rounded-full border border-sky-400/40 bg-slate-950/90 px-4 py-2 text-xs font-bold text-slate-100 shadow-2xl backdrop-blur-md">
-          <span className="h-2 w-2 rounded-full bg-sky-400 animate-pulse shadow-[0_0_8px_#38bdf8]" />
-          Made by <span className="text-sky-400">Priyanshu Khoked</span>
+    <html lang="en" className={inter.variable}>
+      <body className="bg-[#0C0F22] text-[#ECEEFF] antialiased selection:bg-[#959CFF] selection:text-[#0C0F22]">
+        <div className="min-h-screen flex flex-col justify-between max-w-md mx-auto relative overflow-hidden glass-card border-x border-[#959CFF]/10 shadow-2xl">
+          <main className="flex-1 pb-24">
+            {children}
+          </main>
         </div>
-
       </body>
     </html>
   );
