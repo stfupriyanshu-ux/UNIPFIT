@@ -49,16 +49,15 @@ body {
   padding-top: env(safe-area-inset-top); 
 }
 
-/* Glassmorphism Card Style */
+/* Unipfit Glassmorphism Style */
 .glass-card {
-  background: rgba(21, 25, 53, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(149, 156, 255, 0.2);
+  background: rgba(21, 25, 53, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(149, 156, 255, 0.15);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-/* Smooth Scrolling & Responsive Micro-interactions */
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
@@ -71,3 +70,4 @@ button, a {
 button:active, a:active {
   transform: scale(0.97);
 }
+
